@@ -1,26 +1,124 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
+@font-face {
+  font-family: "peyda-light";
+  src: url("/fonts/Peyda-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "peyda-regular";
+  src: url("/fonts/Peyda-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "peyda-medium";
+  src: url("/fonts/Peyda-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "peyda-semibold";
+  src: url("/fonts/Peyda-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "peyda-bold";
+  src: url("../assets/fonts/Peyda-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-primary: #ffffff;
+  --bg-secondary: #111214;
+  --text-primary: #111214;
+  --text-secondary: #ffffff;
+  --button-bg-primary: #f97316;
+  --button-bg-secondary: #ffffff;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  --bg-primary: #111214;
+  --bg-secondary: #ffffff;
+  --text-primary: #ffffff;
+  --text-secondary: #111214;
+  --button-bg-primary: #ffffff;
+  --button-bg-secondary: #f97316;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer utilities {
+  .peyda-light {
+    font-family: "peyda-Light";
+  }
+  .peyda-regular {
+    font-family: "peyda-regular";
+  }
+  .peyda-medium {
+    font-family: "peyda-medium";
+  }
+  .peyda-semibold {
+    font-family: "peyda-semibold";
+  }
+  .peyda-bold {
+    font-family: "peyda-bold";
+  }
+  .bg-primary {
+    background-color: var(--bg-primary);
+  }
+  .bg-secondary {
+    background-color: var(--bg-secondary);
+  }
+  .text-primary {
+    color: var(--text-primary);
+  }
+  .text-secondary {
+    color: var(--text-secondary);
+  }
+  .button-bg-primary {
+    background-color: var(--button-bg-primary);
+    color: var(--text-secondary);
+  }
+  .button-bg-secondary {
+    background-color: var(--button-bg-secondary);
+    color: #f1faee;
+  }
+  .button-variant-default {
+    border: transparent;
+  }
+  .button-variant-outline {
+    border: 0.125rem solid #863f1e;
+  }
+  .button-variant-glass {
+    border: transparent;
+    background-color: transparent;
+    cursor: pointer;
+    transition: 300ms;
+    color: var(--text-primary);
+    &:hover {
+      background-color: #e6394765;
+    }
+  }
+
+  .shadow-inner-right {
+    box-shadow: inset -130px 0 110px 0px var(--bg-primary);
+  }
+  .shadow-inner-right-dark {
+    box-shadow: inset -130px 0 110px 0px var(--bg-secondary);
+  }
+  .button-hover {
+    cursor: pointer;
+    transition: 300ms;
+    &:hover {
+      opacity: 70%;
+    }
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
 }
