@@ -9,19 +9,90 @@ import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 
 const GoalSelection = () => {
   const router = useRouter();
+  const [workoutDays, setWorkoutDays] = useState(1);
 
   return (
     <div className="absolute z-0 flex flex-col items-center w-full h-screen">
-      <h3 className="mt-24 w-70 peyda-bold text-base text-center">
-        هدف ورزشی شما چیست؟
+      <h3 className="mt-24 w-80 peyda-bold text-base text-center">
+        چند روز از هفته را به ورزش اختصاص می‌دهید؟
       </h3>
-      
+      <h1 className="mt-20">{workoutDays}</h1>
+      <div className="flex justify-evenly items-center mt-auto mb-4 w-[90%] h-18 rounded-[1.875rem] bg-[#F3F3F4]">
+        <div
+          onClick={() => {
+            setWorkoutDays(1);
+          }}
+          className={`flex justify-center items-center w-14 h-14 rounded-[1.5rem] cursor-pointer hover:opacity-80 ${
+            workoutDays === 1 ? "text-white" : "text-[#BABBBE]"
+          } ${
+            workoutDays === 1 &&
+            "button-bg-primary shadow-[0_0_0_4px_#F9731640]"
+          }`}
+        >
+          1
+        </div>
+        <div
+          onClick={() => {
+            setWorkoutDays(2);
+          }}
+          className={`flex justify-center items-center w-14 h-14 rounded-[1.5rem] cursor-pointer hover:opacity-80 ${
+            workoutDays === 2 ? "text-white" : "text-[#BABBBE]"
+          } ${
+            workoutDays === 2 &&
+            "button-bg-primary shadow-[0_0_0_4px_#F9731640]"
+          }`}
+        >
+          2
+        </div>
+        <div
+          onClick={() => {
+            setWorkoutDays(3);
+          }}
+          className={`flex justify-center items-center w-14 h-14 rounded-[1.5rem] cursor-pointer hover:opacity-80 ${
+            workoutDays === 3 ? "text-white" : "text-[#BABBBE]"
+          } ${
+            workoutDays === 3 &&
+            "button-bg-primary shadow-[0_0_0_4px_#F9731640]"
+          }`}
+        >
+          3
+        </div>
+        <div
+          onClick={() => {
+            setWorkoutDays(4);
+          }}
+          className={`flex justify-center items-center w-14 h-14 rounded-[1.5rem] cursor-pointer hover:opacity-80 ${
+            workoutDays === 4 ? "text-white" : "text-[#BABBBE]"
+          } ${
+            workoutDays === 4 &&
+            "button-bg-primary shadow-[0_0_0_4px_#F9731640]"
+          }`}
+        >
+          4
+        </div>
+        <div
+          onClick={() => {
+            setWorkoutDays(5);
+          }}
+          className={`flex justify-center items-center w-14 h-14 rounded-[1.5rem] cursor-pointer hover:opacity-80 ${
+            workoutDays === 5 ? "text-white" : "text-[#BABBBE]"
+          } ${
+            workoutDays === 5 &&
+            "button-bg-primary shadow-[0_0_0_4px_#F9731640]"
+          }`}
+        >
+          5
+        </div>
+      </div>
+      <p className="mb-10 peyda-medium">
+        من متعهد هستم که {workoutDays} بار در هفته ورزش کنم
+      </p>
       <Button
         iconPrefix={<HugeiconsIcon icon={ArrowRight02Icon} />}
         color="black"
-        className="mt-auto mb-10 gap-3 h-14 w-[90%] rounded-[1.25rem] peyda-semibold"
+        className="mb-10 gap-3 h-14 w-[90%] rounded-[1.25rem] peyda-semibold"
         onClick={() => {
-          router.push("/workout-days");
+          router.push("/place-selection");
         }}
       >
         ادامه
