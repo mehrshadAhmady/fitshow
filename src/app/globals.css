@@ -85,7 +85,7 @@
   }
   .button-bg-secondary {
     background-color: var(--button-bg-secondary);
-    color: #f1faee;
+    color: var(--text-primary);
   }
   .button-variant-default {
     border: transparent;
@@ -121,4 +121,7 @@
 
 body {
   min-height: 100vh;
+  direction: rtl;
+  -webkit-user-select: none;
+  user-select: none;
 }
