@@ -3,7 +3,7 @@ import Spinner from "../Spinner";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: "medium" | "small" | "large";
-  color?: "primary" | "secondary";
+  color?: "primary" | "secondary" | "black";
   variant?: "default" | "outline" | "glass";
   active?: boolean;
   block?: boolean;
@@ -13,7 +13,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
   children?: React.ReactNode;
   iconPrefix?: React.ReactNode;
-  iconSufix?: React.ReactNode;
+  iconSuffix?: React.ReactNode;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -29,7 +29,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       square = false,
       loading = false,
       iconPrefix,
-      iconSufix,
+      iconSuffix,
       children,
       className,
       ...rest
@@ -37,7 +37,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseClasses = `flex justify-center items-center button-bg-${color} button-variant-${variant} button-hover disabled:opacity-70 disabled:hover:cursor-not-allowed disabled:hover:opacity-70`;
-    const mergedClasses = className ? `${baseClasses} ${className}` : baseClasses;
+    const mergedClasses = className
+      ? `${baseClasses} ${className}`
+      : baseClasses;
 
     return (
       <button
@@ -48,7 +50,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {iconPrefix && iconPrefix}
         {loading ? <Spinner size={size} /> : children}
-        {iconSufix && iconSufix}
+        {iconSuffix && iconSuffix}
       </button>
     );
   }

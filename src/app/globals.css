@@ -40,6 +40,9 @@
   --text-secondary: #ffffff;
   --button-bg-primary: #f97316;
   --button-bg-secondary: #ffffff;
+  --button-bg-black: #111214;
+  --input-bg-primary: #F94B16;
+  --input-bg-secondary: #ffffff;
 }
 
 .dark {
@@ -49,6 +52,9 @@
   --text-secondary: #111214;
   --button-bg-primary: #ffffff;
   --button-bg-secondary: #f97316;
+  --button-bg-black: #111214;
+  --input-bg-primary: #ffffff;
+  --input-bg-secondary: #F94B16;
 }
 
 @layer utilities {
@@ -87,6 +93,10 @@
     background-color: var(--button-bg-secondary);
     color: var(--text-primary);
   }
+  .button-bg-black {
+    background-color: var(--button-bg-black);
+    color: #ffffff;
+  }
   .button-variant-default {
     border: transparent;
   }
@@ -103,19 +113,21 @@
       background-color: #e6394765;
     }
   }
-
-  .shadow-inner-right {
-    box-shadow: inset -130px 0 110px 0px var(--bg-primary);
-  }
-  .shadow-inner-right-dark {
-    box-shadow: inset -130px 0 110px 0px var(--bg-secondary);
-  }
   .button-hover {
     cursor: pointer;
     transition: 300ms;
     &:hover {
       opacity: 70%;
     }
+  }
+
+  .input-bg-primary {
+    background-color: var(--input-bg-primary);
+    color: var(--text-secondary);
+  }
+  .input-bg-secondary {
+    background-color: var(--input-bg-secondary);
+    color: var(--text-primary);
   }
 }
 

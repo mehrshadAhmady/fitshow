@@ -27,13 +27,13 @@ export default function WelcomeLayout({
   return (
     <div className="relative flex flex-col items-center min-h-screen">
       {!isStartTestPage && (
-        <div className="z-20 mt-8 h-2 w-54 ">
+        <div className="z-20 mt-10 h-2 w-54 ">
           <ProgressionBar value={currentIndex} max={5} />
         </div>
       )}
       {children}
       {!isStartTestPage && (
-        <div className="flex gap-4 z-20 mt-auto mb-8">
+        <div className="flex gap-4 z-20 mt-auto mb-10">
           <Button
             iconPrefix={<HugeiconsIcon icon={ArrowRight02Icon} />}
             color="secondary"
