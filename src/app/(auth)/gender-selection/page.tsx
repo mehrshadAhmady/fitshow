@@ -9,6 +9,7 @@ import { ArrowRight02Icon, MaleSymbolIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import MaleSelectionImage from "@/assets/images/MaleSelectionImage.png";
 import FemaleSelectionImage from "@/assets/images/FemaleSelectionImage.png";
+import Checkbox from "@/components/CheckBox";
 
 const GenderSelection = () => {
   const router = useRouter();
