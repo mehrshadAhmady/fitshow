@@ -8,7 +8,7 @@ import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Checkbox from "@/components/CheckBox";
 
-const PlaceSelection = () => {
+const FocusPart = () => {
   const router = useRouter();
   const [bodyPart, setBodyPart] = useState<string[]>([]);
 
@@ -76,4 +76,4 @@ const PlaceSelection = () => {
   );
 };
 
-export default PlaceSelection;
+export default FocusPart;

@@ -13,6 +13,7 @@
     "@hugeicons/core-free-icons": "^1.1.0",
     "@hugeicons/react": "^1.1.1",
     "clsx": "^2.1.1",
+    "keen-slider": "^6.8.6",
     "lucide-react": "^0.544.0",
     "next": "15.5.4",
     "react": "19.1.0",

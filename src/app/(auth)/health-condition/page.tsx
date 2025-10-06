@@ -8,9 +8,8 @@ import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Checkbox from "@/components/CheckBox";
 
-const PlaceSelection = () => {
+const HealthCondition = () => {
   const router = useRouter();
-  const [place, setPlace] = useState<"home" | "gym">("home");
   const [healthCondition, setHealthCondition] = useState<"healthy" | string[]>(
     "healthy"
   );
@@ -500,4 +499,4 @@ const PlaceSelection = () => {
   );
 };
 
-export default PlaceSelection;
+export default HealthCondition;
