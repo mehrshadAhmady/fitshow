@@ -86,7 +86,7 @@ export default function BirthdayForm() {
       year: String(data.year).padStart(4, "0"),
     };
     console.log(`${formatted.year}-${formatted.month}-${formatted.day}`);
-    router.push("/");
+    router.push("/body-form");
   };
 
   return (
