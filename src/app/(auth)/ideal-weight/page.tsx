@@ -1,0 +1,50 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import Button from "@/components/Button";
+
+import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+import WeightPicker from "./_components/WeightPicker";
+
+const IdealWeight = () => {
+  const router = useRouter();
+  const [weight, setWeight] = useState(70);
+
+  return (
+    <div className="absolute z-0 flex flex-col items-center w-full h-screen">
+      <h3 className="mt-24 mb-10 w-80 peyda-bold text-base text-center">
+        وزن ایده‌آلی که هدف شماست چقدره؟
+      </h3>
+      <p
+        className="mt-8 mb-8 text-3xl font-bold text-[#F97316]"
+        style={{ direction: "ltr" }}
+      >
+        {weight} kg
+      </p>
+      <div className="w-[90%]">
+        <WeightPicker
+          value={weight}
+          setValue={setWeight}
+          min={30}
+          max={150}
+          step={0.2}
+        />
+      </div>
+      <Button
+        iconPrefix={<HugeiconsIcon icon={ArrowRight02Icon} />}
+        color="black"
+        className="mt-auto mb-10 gap-3 h-14 w-[90%] rounded-[1.25rem] peyda-semibold"
+        onClick={async () => {
+          console.log(weight);
+          router.push("/ideal-weight");
+        }}
+      >
+        ادامه
+      </Button>
+    </div>
+  );
+};
+
+export default IdealWeight;
