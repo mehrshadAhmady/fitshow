@@ -37,15 +37,13 @@ const TextInput = forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const { placeholder, ...inputProps } = props;
 
-    const baseClasses = `w-full h-[3.5rem] rounded-[0.75rem] ${
-      iconPrefix ? "px-12" : "px-6"
-    } input-bg-${color} disabled:opacity-50 disabled:cursor-not-allowed focus:outline-4 focus:outline-[#F9731640]`;
+    const baseClasses = `w-full h-full rounded-[0.75rem] input-bg-${color} disabled:opacity-50 disabled:cursor-not-allowed focus:outline-4 focus:outline-[#F9731640]`;
     const mergedClasses = className
       ? `${baseClasses} ${className}`
       : baseClasses;
 
     return (
-      <div className="relative h-fit w-full" style={{direction: "ltr"}}>
+      <div className="relative h-full w-full" style={{direction: "ltr"}}>
         {iconPrefix && (
           <div className="absolute top-[50%] -translate-y-[50%] left-3 w-fit h-fit">
             {iconPrefix}

@@ -40,7 +40,7 @@ export default function PhoneNumberForm() {
 
   const onSubmit = ({ phoneNumber }: { phoneNumber: string }) => {
     console.log(phoneNumber);
-    router.push("/otp-code")
+    router.push("/otp-code");
   };
 
   return (
@@ -49,24 +49,26 @@ export default function PhoneNumberForm() {
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-4 w-[90%]"
       >
-        <Controller
-          name="phoneNumber"
-          control={control}
-          render={({ field }) => (
-            <TextInput
-              {...field}
-              ref={phoneRef}
-              type="text"
-              placeholder="+98 912 XXXXX 52"
-              inputSize="large"
-              error={errors.phoneNumber?.message}
-              className="peyda-bold text-base rounded-[1.25rem]"
-              disabled={isSubmitting}
-              style={{ direction: "ltr" }}
-              iconPrefix={<HugeiconsIcon icon={CallIcon} color="white" />}
-            />
-          )}
-        />
+        <div className="w-full h-[3.5rem]">
+          <Controller
+            name="phoneNumber"
+            control={control}
+            render={({ field }) => (
+              <TextInput
+                {...field}
+                ref={phoneRef}
+                type="text"
+                placeholder="+98 912 XXXXX 52"
+                inputSize="large"
+                error={errors.phoneNumber?.message}
+                className="peyda-bold text-base rounded-[1.25rem] px-12"
+                disabled={isSubmitting}
+                style={{ direction: "ltr" }}
+                iconPrefix={<HugeiconsIcon icon={CallIcon} color="white" />}
+              />
+            )}
+          />
+        </div>
         <Button
           type="submit"
           iconPrefix={<HugeiconsIcon icon={ArrowRight02Icon} />}

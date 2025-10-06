@@ -38,7 +38,7 @@ const IdealWeight = () => {
         className="mt-auto mb-10 gap-3 h-14 w-[90%] rounded-[1.25rem] peyda-semibold"
         onClick={async () => {
           console.log(weight);
-          router.push("/ideal-weight");
+          router.push("/age-selection");
         }}
       >
         ادامه

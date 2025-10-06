@@ -41,7 +41,7 @@
   --button-bg-primary: #f97316;
   --button-bg-secondary: #ffffff;
   --button-bg-black: #111214;
-  --input-bg-primary: #F94B16;
+  --input-bg-primary: #f94b16;
   --input-bg-secondary: #ffffff;
 }
 
@@ -54,7 +54,7 @@
   --button-bg-secondary: #f97316;
   --button-bg-black: #111214;
   --input-bg-primary: #ffffff;
-  --input-bg-secondary: #F94B16;
+  --input-bg-secondary: #f94b16;
 }
 
 @layer utilities {
@@ -136,4 +136,8 @@ body {
   direction: rtl;
   -webkit-user-select: none;
   user-select: none;
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
 }
