@@ -93,7 +93,7 @@ const PlanCard = ({ plan, isActive }: PlanCardProps) => {
           }
           className="mt-auto mb-8 w-30 h-12 gap-1 rounded-2xl text-sm font-semibold transition duration-300"
           onClick={() => {
-            router.push("/workout-plan");
+            router.push("/result-plan");
           }}
         >
           <p className="-mt-1">پرداخت</p>

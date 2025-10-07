@@ -10,11 +10,11 @@ export default function AuthLayout({
 }) {
   const pathname = usePathname() ?? "";
 
-  const isStartTestPage = pathname === "/start-test";
+  const isResultPage = pathname === "/result-plan";
 
   return (
     <div className="relative flex flex-col items-center min-h-screen">
-      <Header />
+      {!isResultPage && <Header />}
       {children}
     </div>
   );
