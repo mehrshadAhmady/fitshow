@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Button from "../Button";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Upload01Icon } from "@hugeicons/core-free-icons";
