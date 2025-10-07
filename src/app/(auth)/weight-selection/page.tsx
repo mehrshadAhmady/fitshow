@@ -26,7 +26,6 @@ const WeightSelection = () => {
         </p>
         <p className="text-[#676C75] text-4xl worksans-medium">kg</p>
       </div>
-
       <div className="w-[90%]">
         <WeightPicker
           value={weight}

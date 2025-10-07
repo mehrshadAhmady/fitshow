@@ -55,7 +55,7 @@ const Header = () => {
       >
         <HugeiconsIcon icon={ArrowLeft02Icon} width={21} height={21} />
       </div>
-      <div className="flex flex-col items-center justify-center mr-[5%] w-15 h-7 bg-[#DBEAFE] rounded-xl text-[#2563EB] text-sm">
+      <div className="flex flex-col items-center justify-center mr-[5%] w-15 h-7 bg-[#DBEAFE] rounded-xl text-[#2563EB] text-sm worksans-semibold">
         {pageNumber} of 17
       </div>
     </div>
