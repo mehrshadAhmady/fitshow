@@ -32,6 +32,36 @@
   font-weight: 700;
   font-style: normal;
 }
+@font-face {
+  font-family: "worksans-medium";
+  src: url("../assets/fonts/WorkSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "worksans-semibold";
+  src: url("../assets/fonts/WorkSans-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "worksans-bold";
+  src: url("../assets/fonts/WorkSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "worksans-extrabold";
+  src: url("../assets/fonts/WorkSans-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: "inter-medium";
+  src: url("../assets/fonts/Inter-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
 
 :root {
   --bg-primary: #ffffff;
@@ -72,6 +102,21 @@
   }
   .peyda-bold {
     font-family: "peyda-bold";
+  }
+  .worksans-medium {
+    font-family: "worksans-medium";
+  }
+  .worksans-semibold {
+    font-family: "worksans-semibold";
+  }
+  .worksans-bold {
+    font-family: "worksans-bold";
+  }
+  .worksans-extrabold {
+    font-family: "worksans-extrabold";
+  }
+  .inter-medium {
+    font-family: "inter-medium";
   }
   .bg-primary {
     background-color: var(--bg-primary);

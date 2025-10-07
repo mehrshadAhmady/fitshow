@@ -16,13 +16,13 @@ const GoalSelection = () => {
       <h3 className="mt-24 w-80 peyda-bold text-base text-center">
         چند روز از هفته را به ورزش اختصاص می‌دهید؟
       </h3>
-      <h1 className="mt-20">{workoutDays}</h1>
+      <h1 className="mt-20 text-[4rem] worksans-extrabold">{workoutDays}</h1>
       <div className="flex justify-evenly items-center mt-auto mb-4 w-[90%] h-18 rounded-[1.875rem] bg-[#F3F3F4]">
         <div
           onClick={() => {
             setWorkoutDays(1);
           }}
-          className={`flex justify-center items-center w-14 h-14 rounded-[1.5rem] cursor-pointer hover:opacity-80 ${
+          className={`flex justify-center items-center w-14 h-14 rounded-[1.5rem] cursor-pointer hover:opacity-80 worksans-bold text-[1.25rem] ${
             workoutDays === 1 ? "text-white" : "text-[#BABBBE]"
           } ${
             workoutDays === 1 &&
@@ -35,7 +35,7 @@ const GoalSelection = () => {
           onClick={() => {
             setWorkoutDays(2);
           }}
-          className={`flex justify-center items-center w-14 h-14 rounded-[1.5rem] cursor-pointer hover:opacity-80 ${
+          className={`flex justify-center items-center w-14 h-14 rounded-[1.5rem] cursor-pointer hover:opacity-80 worksans-bold text-[1.25rem] ${
             workoutDays === 2 ? "text-white" : "text-[#BABBBE]"
           } ${
             workoutDays === 2 &&
@@ -48,7 +48,7 @@ const GoalSelection = () => {
           onClick={() => {
             setWorkoutDays(3);
           }}
-          className={`flex justify-center items-center w-14 h-14 rounded-[1.5rem] cursor-pointer hover:opacity-80 ${
+          className={`flex justify-center items-center w-14 h-14 rounded-[1.5rem] cursor-pointer hover:opacity-80 worksans-bold text-[1.25rem] ${
             workoutDays === 3 ? "text-white" : "text-[#BABBBE]"
           } ${
             workoutDays === 3 &&
@@ -61,7 +61,7 @@ const GoalSelection = () => {
           onClick={() => {
             setWorkoutDays(4);
           }}
-          className={`flex justify-center items-center w-14 h-14 rounded-[1.5rem] cursor-pointer hover:opacity-80 ${
+          className={`flex justify-center items-center w-14 h-14 rounded-[1.5rem] cursor-pointer hover:opacity-80 worksans-bold text-[1.25rem] ${
             workoutDays === 4 ? "text-white" : "text-[#BABBBE]"
           } ${
             workoutDays === 4 &&
@@ -74,7 +74,7 @@ const GoalSelection = () => {
           onClick={() => {
             setWorkoutDays(5);
           }}
-          className={`flex justify-center items-center w-14 h-14 rounded-[1.5rem] cursor-pointer hover:opacity-80 ${
+          className={`flex justify-center items-center w-14 h-14 rounded-[1.5rem] cursor-pointer hover:opacity-80 worksans-bold text-[1.25rem] ${
             workoutDays === 5 ? "text-white" : "text-[#BABBBE]"
           } ${
             workoutDays === 5 &&

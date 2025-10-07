@@ -107,7 +107,7 @@ export default function BirthdayForm() {
                 type="number"
                 placeholder="DD"
                 inputSize="large"
-                className="text-center peyda-bold text-base rounded-[1.25rem] p-0 focus:shadow-[0_0_0_4px_#F9731640] not-focus:bg-transparent not-focus:text-[#BABBBE]"
+                className="text-center worksans-bold text-[1.25rem] rounded-[1.25rem] p-0 focus:shadow-[0_0_0_4px_#F9731640] not-focus:bg-transparent not-focus:text-[#BABBBE]"
                 style={{ direction: "ltr" }}
                 disabled={isSubmitting}
                 onChange={(e) => {
@@ -134,7 +134,7 @@ export default function BirthdayForm() {
                 type="number"
                 placeholder="MM"
                 inputSize="large"
-                className="text-center peyda-bold text-base rounded-[1.25rem] p-0 focus:shadow-[0_0_0_4px_#F9731640] not-focus:bg-transparent not-focus:text-[#BABBBE]"
+                className="text-center worksans-bold text-[1.25rem] rounded-[1.25rem] p-0 focus:shadow-[0_0_0_4px_#F9731640] not-focus:bg-transparent not-focus:text-[#BABBBE]"
                 style={{ direction: "ltr" }}
                 disabled={isSubmitting}
                 onChange={(e) => {
@@ -158,7 +158,7 @@ export default function BirthdayForm() {
                 type="number"
                 placeholder="YYYY"
                 inputSize="large"
-                className="text-center peyda-bold text-base rounded-[1.25rem] p-0 focus:shadow-[0_0_0_4px_#F9731640] not-focus:bg-transparent not-focus:text-[#BABBBE]"
+                className="text-center worksans-bold text-[1.25rem] rounded-[1.25rem] p-0 focus:shadow-[0_0_0_4px_#F9731640] not-focus:bg-transparent not-focus:text-[#BABBBE]"
                 style={{ direction: "ltr" }}
                 disabled={isSubmitting}
                 onChange={(e) =>

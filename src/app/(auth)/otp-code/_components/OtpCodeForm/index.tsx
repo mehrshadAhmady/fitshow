@@ -62,7 +62,7 @@ export default function OtpCodeForm() {
                 return (
                   <input
                     {...props}
-                    className={`flex justify-center items-center text-center mt-16 mb-10 rounded-2xl w-16 h-18 focus:outline-0 transition-colors
+                    className={`flex justify-center items-center text-center mt-16 mb-10 rounded-2xl w-16 h-18 focus:outline-0 transition-colors inter-medium text-[1.75rem]
                       ${
                         isEmpty
                           ? "bg-[#F9731640]"
@@ -79,7 +79,9 @@ export default function OtpCodeForm() {
           )}
         />
         {errors.otpCode && (
-          <p className="text-red-500 text-xs peyda-regular -mt-6 ml-2">{errors.otpCode.message}</p>
+          <p className="text-red-500 text-xs peyda-regular -mt-6 ml-2">
+            {errors.otpCode.message}
+          </p>
         )}
         <Button
           type="submit"

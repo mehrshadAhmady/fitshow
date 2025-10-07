@@ -21,6 +21,7 @@ const ResultPlan = () => {
         <div className="absolute z-10 -top-10 w-76 h-38 rounded-3xl bg-[#F3F3F4] opacity-48"></div>
         <div className="absolute z-20 -top-5 w-86 h-38 rounded-3xl bg-[#F3F3F4]"></div>
         <div className="h-screen z-30 flex flex-col items-center rounded-tr-3xl rounded-tl-3xl w-full bg-primary">
+          <div className="mt-3 w-20 h-1.5 bg-[#D7D8D9] rounded-br-2xl rounded-bl-2xl"></div>
           <h3 className="mt-auto peyda-bold text-base text-center">
             برنامه تمرینی شما آماده است.
           </h3>

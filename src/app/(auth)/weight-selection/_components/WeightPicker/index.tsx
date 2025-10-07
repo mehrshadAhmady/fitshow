@@ -114,7 +114,7 @@ const WeightPicker = ({
                 }`}
               ></div>
               {isMajor && (
-                <span className="mt-1 text-sm text-gray-600 font-semibold">
+                <span className="mt-1 text-sm text-gray-600 worksans-semibold">
                   {number}
                 </span>
               )}

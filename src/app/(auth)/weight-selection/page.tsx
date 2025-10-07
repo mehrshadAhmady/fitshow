@@ -17,12 +17,16 @@ const WeightSelection = () => {
       <h3 className="mt-24 mb-10 w-80 peyda-bold text-base text-center">
         وزن شما چقدر است؟
       </h3>
-      <p
-        className="mt-8 mb-8 text-3xl font-bold text-[#F97316]"
-        style={{ direction: "ltr" }}
-      >
-        {weight} kg
-      </p>
+      <div className="flex flex-row-reverse items-end mt-4 mb-4">
+        <p
+          className="text-8xl font-bold worksans-bold"
+          style={{ direction: "ltr" }}
+        >
+          {weight}
+        </p>
+        <p className="text-[#676C75] text-4xl worksans-medium">kg</p>
+      </div>
+
       <div className="w-[90%]">
         <WeightPicker
           value={weight}
