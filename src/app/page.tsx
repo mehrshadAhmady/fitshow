@@ -1,13 +1,10 @@
-import { Dumbbell02Icon } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <div>
-      <h1 className="peyda-bold">سلام</h1>
-      <HugeiconsIcon icon={Dumbbell02Icon} width={50} height={50} />
-      <Link href={"/start-test"}>Start Test</Link>
+    <div className="flex flex-col justify-center items-center bg-secondary w-screen h-screen text-secondary">
+      <h1 className="peyda-bold text-2xl">Welcome to FitShow</h1>
+      <Link className="peyda-semibold text-[#F94B16] text-sm" href={"/start-test"}>Start Test</Link>
     </div>
   );
 }

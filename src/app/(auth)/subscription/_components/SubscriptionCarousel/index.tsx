@@ -4,15 +4,10 @@ import * as React from "react";
 import Slider from "react-slick";
 import { cn } from "@/lib/utils";
 import { HugeiconsIcon } from "@hugeicons/react";
-import {
-  ArrowLeft02Icon,
-  ArrowRight02Icon,
-  Tick02Icon,
-} from "@hugeicons/core-free-icons";
+import { ArrowLeft02Icon, ArrowRight02Icon } from "@hugeicons/core-free-icons";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Button from "@/components/Button";
 import PlanCard from "../PlanCard";
 
 interface Plan {
@@ -78,18 +73,24 @@ function ArrowButton({
 
 export default function SubscriptionCarousel() {
   const sliderRef = React.useRef<Slider | null>(null);
-  const [currentSlide, setCurrentSlide] = React.useState(1);
+  const [activeIndex, setActiveIndex] = React.useState(1);
 
   const settings = {
     infinite: false,
     centerMode: true,
-    slidesToShow: 1.05,
-    centerPadding: "25px",
-    speed: 500,
+    slidesToShow: 1,
+    centerPadding: "35px",
+    speed: 200,
     dots: false,
     arrows: false,
     initialSlide: 1,
     swipeToSlide: true,
+    focusOnSelect: true,
+    afterChange: (index: number) => {
+      // ✅ React-slick sometimes reports fractional positions;
+      // round to the nearest integer for stability
+      setActiveIndex(Math.round(index));
+    },
   };
 
   return (
@@ -97,31 +98,25 @@ export default function SubscriptionCarousel() {
       {/* Arrows */}
       <ArrowButton
         direction="left"
-        disabled={currentSlide === 0}
-        onClick={() => {
-          setCurrentSlide((prev) => prev - 1);
-          sliderRef.current?.slickPrev();
-        }}
+        disabled={activeIndex === 0}
+        onClick={() => sliderRef.current?.slickPrev()}
       />
       <ArrowButton
         direction="right"
-        disabled={currentSlide === 2}
-        onClick={() => {
-          setCurrentSlide((prev) => prev + 1);
-          sliderRef.current?.slickNext();
-        }}
+        disabled={activeIndex === plans.length - 1}
+        onClick={() => sliderRef.current?.slickNext()}
       />
 
       {/* Slider */}
       <div className="w-full max-w-[400px] overflow-hidden">
         <Slider ref={sliderRef} {...settings}>
-          {plans.map((plan, index) => {
-            const isActive = index === currentSlide;
-
-            return (
-              <PlanCard plan={plan} isActive={isActive} />
-            );
-          })}
+          {plans.map((plan, index) => (
+            <PlanCard
+              key={plan.id}
+              plan={plan}
+              isActive={index === activeIndex}
+            />
+          ))}
         </Slider>
       </div>
     </div>
