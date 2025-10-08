@@ -4,15 +4,16 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Button from "@/components/Button";
+import { useUserContext } from "@/context/userContext";
 
 import { ArrowRight02Icon, MaleSymbolIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import MaleSelectionImage from "@/assets/images/MaleSelectionImage.png";
 import FemaleSelectionImage from "@/assets/images/FemaleSelectionImage.png";
-import Checkbox from "@/components/CheckBox";
 
 const GenderSelection = () => {
   const router = useRouter();
+  const { updateUser } = useUserContext();
   const [gender, setGender] = useState<"male" | "female">("male");
 
   return (
@@ -76,7 +77,8 @@ const GenderSelection = () => {
         iconPrefix={<HugeiconsIcon icon={ArrowRight02Icon} />}
         color="black"
         className="mt-auto mb-10 gap-3 h-14 w-[90%] rounded-[1.25rem] peyda-semibold"
-        onClick={() => {
+        onClick={async () => {
+          await updateUser({ gender: gender });
           router.push("/goal-selection");
         }}
       >

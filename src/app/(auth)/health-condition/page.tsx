@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Button from "@/components/Button";
+import { useUserContext } from "@/context/userContext";
 
 import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -10,6 +11,7 @@ import Checkbox from "@/components/CheckBox";
 
 const HealthCondition = () => {
   const router = useRouter();
+  const { updateUser } = useUserContext();
   const [healthCondition, setHealthCondition] = useState<"healthy" | string[]>(
     "healthy"
   );
@@ -489,7 +491,8 @@ const HealthCondition = () => {
         iconPrefix={<HugeiconsIcon icon={ArrowRight02Icon} />}
         color="black"
         className="fixed bottom-0 z-30 mb-10 gap-3 h-14 w-[90%] rounded-[1.25rem] peyda-semibold"
-        onClick={() => {
+        onClick={async () => {
+          await updateUser({ healthCondition: healthCondition });
           router.push("/focus-part");
         }}
       >

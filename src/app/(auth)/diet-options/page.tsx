@@ -4,16 +4,13 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Button from "@/components/Button";
 
-import {
-  ArrowRight02Icon,
-  MultiplicationSignIcon,
-  Tick02Icon,
-} from "@hugeicons/core-free-icons";
+import { MultiplicationSignIcon, Tick02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import { useUserContext } from "@/context/userContext";
 
 const DietOptions = () => {
   const router = useRouter();
-  const [isDiet, setIsDiet] = useState(false);
+  const { updateUser } = useUserContext();
 
   return (
     <div className="absolute z-0 flex flex-col items-center w-full h-screen">
@@ -26,7 +23,7 @@ const DietOptions = () => {
           color="black"
           className="gap-3 h-14 w-[48%] rounded-[1.25rem] peyda-semibold"
           onClick={async () => {
-            await setIsDiet(true);
+            await updateUser({ dietPlan: true });
             router.push("/interest-sport");
           }}
         >
@@ -39,7 +36,7 @@ const DietOptions = () => {
           color="secondary"
           className="gap-3 h-14 w-[48%] rounded-[1.25rem] peyda-semibold"
           onClick={async () => {
-            await setIsDiet(false);
+            await updateUser({ dietPlan: false });
             router.push("/interest-sport");
           }}
         >

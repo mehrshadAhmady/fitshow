@@ -7,9 +7,11 @@ import Button from "@/components/Button";
 import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import WeightPicker from "./_components/WeightPicker";
+import { useUserContext } from "@/context/userContext";
 
 const WeightSelection = () => {
   const router = useRouter();
+  const { updateUser } = useUserContext();
   const [weight, setWeight] = useState(70);
 
   return (
@@ -40,7 +42,7 @@ const WeightSelection = () => {
         color="black"
         className="mt-auto mb-10 gap-3 h-14 w-[90%] rounded-[1.25rem] peyda-semibold"
         onClick={async () => {
-          console.log(weight);
+          await updateUser({ weight: weight });
           router.push("/ideal-weight");
         }}
       >

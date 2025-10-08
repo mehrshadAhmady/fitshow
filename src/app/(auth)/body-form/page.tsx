@@ -9,9 +9,11 @@ import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import BodyFormImage from "@/assets/images/BodyFormImage.png";
 import Image from "next/image";
+import { useUserContext } from "@/context/userContext";
 
 const BodyForm = () => {
   const router = useRouter();
+  const { updateUser } = useUserContext();
   const [bodyForm, setBodyForm] = useState<"thin" | "obese">("thin");
 
   return (
@@ -49,8 +51,8 @@ const BodyForm = () => {
         iconPrefix={<HugeiconsIcon icon={ArrowRight02Icon} />}
         color="black"
         className="mt-auto mb-10 gap-3 h-14 w-[90%] rounded-[1.25rem] peyda-semibold"
-        onClick={() => {
-          console.log(bodyForm);
+        onClick={async () => {
+          await updateUser({ bodyForm: bodyForm });
           router.push("/upload");
         }}
       >

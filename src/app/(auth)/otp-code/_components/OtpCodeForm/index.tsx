@@ -13,6 +13,8 @@ import OtpInput from "react-otp-input";
 import { ArrowRight02Icon, ReloadIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useEffect } from "react";
+import { useUserContext } from "@/context/userContext";
+import { resendOtp, verifyOtp } from "../../actions";
 
 // --- validation schemas
 
@@ -27,6 +29,7 @@ const otpSchema = z.object({
 // AuthForm Component
 export default function OtpCodeForm() {
   const router = useRouter();
+  const { user, updateUser } = useUserContext();
   const { isRunning, formattedTime, autoStartTimer, startTimer } =
     useOtpTimer();
 
@@ -39,9 +42,20 @@ export default function OtpCodeForm() {
     defaultValues: { otpCode: "" },
   });
 
-  const onSubmit = ({ otpCode }: { otpCode: string }) => {
-    console.log(otpCode);
-    router.push("/gender-selection");
+  const onSubmit = async ({ otpCode }: { otpCode: string }) => {
+    try {
+      if (user.phoneNumber) {
+        const result = await verifyOtp(otpCode, user.phoneNumber);
+        if (result) {
+          updateUser({ verified: true });
+          router.push("/gender-selection");
+        }
+      } else {
+        router.push("/phone-number");
+      }
+    } catch (err) {
+      alert("Failed to verify OTP");
+    }
   };
 
   useEffect(() => {
@@ -94,13 +108,19 @@ export default function OtpCodeForm() {
           </p>
         )}
         <Button
+          type="button"
           color="primary"
           className="mt-auto mb-2 gap-3 h-14 rounded-[1.25rem] peyda-semibold"
           iconPrefix={!isRunning && <HugeiconsIcon icon={ReloadIcon} />}
           disabled={isSubmitting || isRunning}
           style={{ direction: "rtl" }}
-          onClick={() => {
-            startTimer();
+          onClick={async () => {
+            if (user.phoneNumber) {
+              await resendOtp(user.phoneNumber);
+              startTimer();
+            } else {
+              router.push("/phone-number");
+            }
           }}
         >
           {isRunning ? `ارسال مجدد پس از ${formattedTime}` : "ارسال مجدد"}
@@ -109,7 +129,9 @@ export default function OtpCodeForm() {
           type="submit"
           color="black"
           className="mb-10 gap-3 h-14 rounded-[1.25rem] peyda-semibold"
-          iconPrefix={<HugeiconsIcon icon={ArrowRight02Icon} />}
+          iconPrefix={
+            !isSubmitting && <HugeiconsIcon icon={ArrowRight02Icon} />
+          }
           disabled={isSubmitting || !isValid}
           style={{ direction: "rtl" }}
         >

@@ -1,14 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Button from "@/components/Button";
 
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
+import { useUserContext } from "@/context/userContext";
 
 const GoalSelection = () => {
   const router = useRouter();
+  const { updateUser } = useUserContext();
   const [workoutDays, setWorkoutDays] = useState(1);
 
   return (
@@ -91,7 +93,8 @@ const GoalSelection = () => {
         iconPrefix={<HugeiconsIcon icon={ArrowRight02Icon} />}
         color="black"
         className="mb-10 gap-3 h-14 w-[90%] rounded-[1.25rem] peyda-semibold"
-        onClick={() => {
+        onClick={async () => {
+          await updateUser({ workoutDays: workoutDays });
           router.push("/place-selection");
         }}
       >

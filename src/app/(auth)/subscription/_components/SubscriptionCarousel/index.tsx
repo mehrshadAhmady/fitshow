@@ -18,6 +18,7 @@ interface Plan {
   oldPrice: string;
   discount?: string;
   highlighted?: boolean;
+  duration: "1-month" | "6-months" | "12-months";
 }
 
 const plans: Plan[] = [
@@ -27,6 +28,7 @@ const plans: Plan[] = [
     price: "۱.۱۴۰.۰۰۰ تومان",
     oldMonthlyPrice: "ماهانه ۴۷.۵۰۰ تومان",
     oldPrice: "۱.۲۴۰.۰۰۰ تومان",
+    duration: "6-months"
   },
   {
     id: 2,
@@ -36,6 +38,7 @@ const plans: Plan[] = [
     oldPrice: "۱.۲۴۰.۰۰۰ تومان",
     discount: "50 ٪ تخفیف",
     highlighted: true,
+    duration: "1-month"
   },
   {
     id: 3,
@@ -43,6 +46,7 @@ const plans: Plan[] = [
     price: "۱.۱۴۰.۰۰۰ تومان",
     oldMonthlyPrice: "ماهانه ۴۷.۵۰۰ تومان",
     oldPrice: "۱.۲۴۰.۰۰۰ تومان",
+    duration: "12-months"
   },
 ];
 

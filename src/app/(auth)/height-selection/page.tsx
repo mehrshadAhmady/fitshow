@@ -7,10 +7,12 @@ import Button from "@/components/Button";
 import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import HeightPicker from "./_components/HeightPicker";
+import { useUserContext } from "@/context/userContext";
 
 const HeightSelection = () => {
   const router = useRouter();
-  const [selected, setSelected] = useState(172);
+  const { updateUser } = useUserContext();
+  const [selectedHeight, setSelectedHeight] = useState(172);
 
   return (
     <div className="absolute z-0 flex flex-col items-center w-full h-screen">
@@ -18,15 +20,15 @@ const HeightSelection = () => {
         قد شما چقدر است؟
       </h3>
       <HeightPicker
-        setData={(number: number) => setSelected(number)}
-        data={selected}
+        setData={(number: number) => setSelectedHeight(number)}
+        data={selectedHeight}
       />
       <Button
         iconPrefix={<HugeiconsIcon icon={ArrowRight02Icon} />}
         color="black"
         className="mt-auto mb-10 gap-3 h-14 w-[90%] rounded-[1.25rem] peyda-semibold"
         onClick={async () => {
-          await console.log(selected);
+          await updateUser({ height: selectedHeight });
           router.push("/weight-selection");
         }}
       >

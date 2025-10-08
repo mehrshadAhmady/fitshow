@@ -13,9 +13,11 @@ import {
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Checkbox from "@/components/CheckBox";
+import { useUserContext } from "@/context/userContext";
 
 const GoalSelection = () => {
   const router = useRouter();
+  const { updateUser } = useUserContext();
   const [goal, setGoal] = useState<
     "lose-weight" | "increase-strength" | "bulk" | "try-test"
   >("lose-weight");
@@ -43,7 +45,7 @@ const GoalSelection = () => {
         block
       />
       <Checkbox
-        label="می‌خوام حجم بگیرم"
+        label="می‌خوام استقامتم رو افزایش بدم"
         checked={goal === "increase-strength"}
         onChange={() => setGoal("increase-strength")}
         iconPrefix={
@@ -60,7 +62,7 @@ const GoalSelection = () => {
         block
       />
       <Checkbox
-        label="دارم تست رو امتحان می‌کنم!"
+        label="می‌خوام حجم بگیرم"
         checked={goal === "bulk"}
         onChange={() => setGoal("bulk")}
         iconPrefix={
@@ -77,7 +79,7 @@ const GoalSelection = () => {
         block
       />
       <Checkbox
-        label="می‌خوام وزن کم کنم"
+        label="دارم تست رو امتحان می‌کنم!"
         checked={goal === "try-test"}
         onChange={() => setGoal("try-test")}
         iconPrefix={
@@ -97,7 +99,8 @@ const GoalSelection = () => {
         iconPrefix={<HugeiconsIcon icon={ArrowRight02Icon} />}
         color="black"
         className="mt-auto mb-10 gap-3 h-14 w-[90%] rounded-[1.25rem] peyda-semibold"
-        onClick={() => {
+        onClick={async () => {
+          await updateUser({ workoutGoal: goal });
           router.push("/workout-days");
         }}
       >

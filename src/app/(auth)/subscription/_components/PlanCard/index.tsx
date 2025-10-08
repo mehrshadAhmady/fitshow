@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Button from "@/components/Button";
 import { ArrowRight02Icon, Tick02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
+import { useUserContext } from "@/context/userContext";
 
 interface Plan {
   id: number;
@@ -13,6 +14,7 @@ interface Plan {
   oldPrice: string;
   discount?: string;
   highlighted?: boolean;
+  duration: "1-month" | "6-months" | "12-months";
 }
 
 interface PlanCardProps {
@@ -22,6 +24,7 @@ interface PlanCardProps {
 
 const PlanCard = ({ plan, isActive }: PlanCardProps) => {
   const router = useRouter();
+  const { updateUser } = useUserContext();
 
   return (
     <div
@@ -92,7 +95,8 @@ const PlanCard = ({ plan, isActive }: PlanCardProps) => {
             <HugeiconsIcon icon={ArrowRight02Icon} width={14} height={14} />
           }
           className="mt-auto mb-8 w-30 h-12 gap-1 rounded-2xl text-sm font-semibold transition duration-300"
-          onClick={() => {
+          onClick={async () => {
+            await updateUser({userPlan: plan.duration})
             router.push("/result-plan");
           }}
         >

@@ -13,6 +13,7 @@ import BodyBuildingImage from "@/assets/images/BodyBuildingImage.png";
 import BikingImage from "@/assets/images/BikingImage.png";
 import SkatingImage from "@/assets/images/SkatingImage.png";
 import Image from "next/image";
+import { useUserContext } from "@/context/userContext";
 
 type Interests =
   | "running"
@@ -24,6 +25,7 @@ type Interests =
 
 const InterestSport = () => {
   const router = useRouter();
+  const { updateUser } = useUserContext();
   const [interest, setInterest] = useState<Interests>("running");
 
   return (
@@ -188,6 +190,7 @@ const InterestSport = () => {
         color="black"
         className="mt-auto mb-10 gap-3 h-14 w-[90%] rounded-[1.25rem] peyda-semibold"
         onClick={async () => {
+          await updateUser({ interestSport: interest });
           router.push("/subscription");
         }}
       >

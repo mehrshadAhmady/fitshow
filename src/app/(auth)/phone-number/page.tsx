@@ -1,3 +1,5 @@
+"use client"
+
 import PhoneNumberForm from "./_components/PhoneNumberForm";
 
 const PhoneNumber = () => {

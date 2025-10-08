@@ -5,6 +5,9 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
+import { saveOtp } from "../../actions";
+import { useUserContext } from "@/context/userContext";
+
 import TextInput from "@/components/TextInput";
 import Form from "@/components/Form";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -24,6 +27,7 @@ const phoneSchema = z.object({
 export default function PhoneNumberForm() {
   const router = useRouter();
   const phoneRef = useRef<HTMLInputElement | null>(null);
+  const { updateUser } = useUserContext();
 
   useEffect(() => {
     phoneRef.current?.focus();
@@ -38,9 +42,16 @@ export default function PhoneNumberForm() {
     defaultValues: { phoneNumber: "" },
   });
 
-  const onSubmit = ({ phoneNumber }: { phoneNumber: string }) => {
-    console.log(phoneNumber);
-    router.push("/otp-code");
+  const onSubmit = async ({ phoneNumber }: { phoneNumber: string }) => {
+    try {
+      const result = await saveOtp(phoneNumber);
+      updateUser({ phoneNumber: phoneNumber });
+      if (result) {
+        router.push("/otp-code");
+      }
+    } catch (err) {
+      alert("Failed to send OTP");
+    }
   };
 
   return (
@@ -71,11 +82,14 @@ export default function PhoneNumberForm() {
         </div>
         <Button
           type="submit"
-          iconPrefix={<HugeiconsIcon icon={ArrowRight02Icon} />}
+          iconPrefix={
+            !isSubmitting && <HugeiconsIcon icon={ArrowRight02Icon} />
+          }
           color="black"
           className="mt-auto mb-10 gap-3 h-14 rounded-[1.25rem] peyda-semibold"
+          disabled={isSubmitting}
         >
-          ارسال کد تایید
+          {isSubmitting ? "درحال ارسال..." : "ارسال کد تائید"}
         </Button>
       </Form>
     </div>

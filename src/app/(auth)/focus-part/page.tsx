@@ -7,9 +7,11 @@ import Button from "@/components/Button";
 import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Checkbox from "@/components/CheckBox";
+import { useUserContext } from "@/context/userContext";
 
 const FocusPart = () => {
   const router = useRouter();
+  const { updateUser } = useUserContext();
   const [bodyPart, setBodyPart] = useState<string[]>([]);
 
   const toggleBodyPart = (part: string) => {
@@ -66,7 +68,8 @@ const FocusPart = () => {
         color="black"
         className="mt-auto mb-10 gap-3 h-14 w-[90%] rounded-[1.25rem] peyda-semibold"
         disabled={!bodyPart.length}
-        onClick={() => {
+        onClick={async () => {
+          await updateUser({ focusPart: bodyPart });
           router.push("/height-selection");
         }}
       >

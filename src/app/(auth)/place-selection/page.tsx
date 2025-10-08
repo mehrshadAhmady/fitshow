@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Button from "@/components/Button";
+import { useUserContext } from "@/context/userContext";
 
 import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -12,6 +13,7 @@ import Checkbox from "@/components/CheckBox";
 
 const PlaceSelection = () => {
   const router = useRouter();
+  const { updateUser } = useUserContext();
   const [place, setPlace] = useState<"home" | "gym">("home");
 
   return (
@@ -47,7 +49,8 @@ const PlaceSelection = () => {
         iconPrefix={<HugeiconsIcon icon={ArrowRight02Icon} />}
         color="black"
         className="mt-auto mb-10 gap-3 h-14 w-[90%] rounded-[1.25rem] peyda-semibold"
-        onClick={() => {
+        onClick={async () => {
+          await updateUser({ workoutPlace: place });
           router.push("/health-condition");
         }}
       >

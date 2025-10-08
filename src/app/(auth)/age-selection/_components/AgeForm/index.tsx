@@ -11,6 +11,7 @@ import Form from "@/components/Form";
 import Button from "@/components/Button";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
+import { useUserContext } from "@/context/userContext";
 
 // schema validations
 const birthdaySchema = z
@@ -44,6 +45,7 @@ type BirthdayFormData = z.infer<typeof birthdaySchema>;
 
 export default function BirthdayForm() {
   const router = useRouter();
+  const { updateUser } = useUserContext();
   const dayRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
@@ -63,7 +65,7 @@ export default function BirthdayForm() {
   const dayValue = useWatch({ control, name: "day" });
   const monthValue = useWatch({ control, name: "month" });
 
-  // ✅ Reactively adjust day if user changes month to >=7 after entering 31
+  // Reactively adjust day if user changes month to >=7 after entering 31
   useEffect(() => {
     const dayNum = parseInt(dayValue || "0", 10);
     const monthNum = parseInt(monthValue || "0", 10);
@@ -79,13 +81,15 @@ export default function BirthdayForm() {
     return isNaN(num) ? "" : String(num).padStart(2, "0");
   };
 
-  const onSubmit = (data: BirthdayFormData) => {
+  const onSubmit = async (data: BirthdayFormData) => {
     const formatted = {
       day: String(data.day).padStart(2, "0"),
       month: String(data.month).padStart(2, "0"),
       year: String(data.year).padStart(4, "0"),
     };
-    console.log(`${formatted.year}-${formatted.month}-${formatted.day}`);
+    await updateUser({
+      birthDate: `${formatted.year}-${formatted.month}-${formatted.day}`,
+    });
     router.push("/body-form");
   };
 
