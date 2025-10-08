@@ -12,6 +12,7 @@ import Button from "@/components/Button";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { useUserContext } from "@/context/userContext";
+import { useLocalUser } from "@/hooks/useLocalUser";
 
 // schema validations
 const birthdaySchema = z
@@ -35,7 +36,7 @@ const birthdaySchema = z
       .regex(/^\d{4}$/, "سال باید شامل 4 رقم باشد")
       .transform((val) => parseInt(val, 10)),
   })
-  // ❗ validation safety
+  // validation safety
   .refine((data) => !(data.month >= 7 && data.month <= 12 && data.day === 31), {
     message: "ماه‌های ۷ تا ۱۲ دارای ۳۱ روز نیستند",
     path: ["day"],
@@ -46,6 +47,7 @@ type BirthdayFormData = z.infer<typeof birthdaySchema>;
 export default function BirthdayForm() {
   const router = useRouter();
   const { updateUser } = useUserContext();
+  const { localUser, loading } = useLocalUser();
   const dayRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
@@ -59,8 +61,21 @@ export default function BirthdayForm() {
     setValue,
   } = useForm({
     resolver: zodResolver(birthdaySchema),
-    defaultValues: { day: "", month: "", year: "" },
+    defaultValues: {
+      day: "",
+      month: "",
+      year: "",
+    },
   });
+
+  useEffect(() => {
+    if (!loading && localUser?.birthDate) {
+      const [year, month, day] = localUser.birthDate.split("-");
+      setValue("day", day || "");
+      setValue("month", month || "");
+      setValue("year", year || "");
+    }
+  }, [loading, localUser, setValue]);
 
   const dayValue = useWatch({ control, name: "day" });
   const monthValue = useWatch({ control, name: "month" });

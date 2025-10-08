@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Button from "@/components/Button";
 import Checkbox from "@/components/CheckBox";
@@ -10,11 +10,19 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import BodyFormImage from "@/assets/images/BodyFormImage.png";
 import Image from "next/image";
 import { useUserContext } from "@/context/userContext";
+import { useLocalUser } from "@/hooks/useLocalUser";
 
 const BodyForm = () => {
   const router = useRouter();
   const { updateUser } = useUserContext();
   const [bodyForm, setBodyForm] = useState<"thin" | "obese">("thin");
+  const { localUser, loading } = useLocalUser();
+
+   useEffect(() => {
+    if (!loading && localUser?.bodyForm) {
+      setBodyForm(localUser.bodyForm);
+    }
+  }, [loading, localUser]);
 
   return (
     <div className="absolute z-0 flex flex-col items-center w-full h-screen">

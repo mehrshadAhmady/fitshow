@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Button from "@/components/Button";
@@ -10,11 +10,19 @@ import { ArrowRight02Icon, MaleSymbolIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import MaleSelectionImage from "@/assets/images/MaleSelectionImage.png";
 import FemaleSelectionImage from "@/assets/images/FemaleSelectionImage.png";
+import { useLocalUser } from "@/hooks/useLocalUser";
 
 const GenderSelection = () => {
   const router = useRouter();
   const { updateUser } = useUserContext();
   const [gender, setGender] = useState<"male" | "female">("male");
+  const { localUser, loading } = useLocalUser();
+  
+    useEffect(() => {
+      if (!loading && localUser?.gender) {
+        setGender(localUser.gender);
+      }
+    }, [loading, localUser]);
 
   return (
     <div className="absolute z-0 flex flex-col items-center w-full h-screen">

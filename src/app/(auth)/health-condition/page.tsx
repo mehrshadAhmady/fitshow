@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Button from "@/components/Button";
 import { useUserContext } from "@/context/userContext";
@@ -8,6 +8,7 @@ import { useUserContext } from "@/context/userContext";
 import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Checkbox from "@/components/CheckBox";
+import { useLocalUser } from "@/hooks/useLocalUser";
 
 const HealthCondition = () => {
   const router = useRouter();
@@ -15,6 +16,13 @@ const HealthCondition = () => {
   const [healthCondition, setHealthCondition] = useState<"healthy" | string[]>(
     "healthy"
   );
+  const { localUser, loading } = useLocalUser();
+
+  useEffect(() => {
+    if (!loading && localUser?.healthCondition) {
+      setHealthCondition(localUser.healthCondition);
+    }
+  }, [loading, localUser]);
 
   const changeCondition = (condition: string) => {
     setHealthCondition((prev) => {

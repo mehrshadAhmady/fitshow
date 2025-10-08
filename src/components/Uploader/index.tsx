@@ -9,11 +9,13 @@ import { cn } from "@/lib/utils";
 interface UploaderProps {
   onUploadComplete?: (imageUrl: string, fileId: string) => void;
   onImageChange?: () => void;
+  initialImage?: string | null;
 }
 
 export default function Uploader({
   onUploadComplete,
   onImageChange,
+  initialImage,
 }: UploaderProps) {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [dragActive, setDragActive] = useState(false);
@@ -21,6 +23,12 @@ export default function Uploader({
   const [uploadProgress, setUploadProgress] = useState(0);
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [showUploadModal, setShowUploadModal] = useState(false);
+
+  useEffect(() => {
+    if (initialImage) {
+      setUploadedImage(initialImage);
+    }
+  }, [initialImage]);
 
   const maxFileSize = 700 * 1024 * 1024; // 700MB
   const acceptedTypes = ["image/jpeg", "image/png", "application/pdf"];
@@ -45,7 +53,12 @@ export default function Uploader({
           setUploadedImage(previewUrl);
           setUploadingFile(null);
           setUploadProgress(0);
-          onUploadComplete?.(previewUrl, file.name);
+
+          // ✅ FIXED: Defer parent state update
+          setTimeout(() => {
+            onUploadComplete?.(previewUrl, file.name);
+          }, 0);
+
           return 1;
         }
         return prev + 0.05;

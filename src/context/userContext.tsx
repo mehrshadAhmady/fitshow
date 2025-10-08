@@ -50,7 +50,7 @@ const initialUserData: User = {
   height: 172,
   weight: 70,
   idealWeight: 70,
-  birthDate: "1375-05-20",
+  birthDate: "",
   bodyForm: "thin",
   bodyImage: "",
   dietPlan: true,

@@ -14,6 +14,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowRight02Icon, CallIcon } from "@hugeicons/core-free-icons";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
+import { useLocalUser } from "@/hooks/useLocalUser";
 
 // --- validation schemas
 const phoneSchema = z.object({
@@ -28,6 +29,7 @@ export default function PhoneNumberForm() {
   const router = useRouter();
   const phoneRef = useRef<HTMLInputElement | null>(null);
   const { updateUser } = useUserContext();
+   const { localUser, loading } = useLocalUser();
 
   useEffect(() => {
     phoneRef.current?.focus();
@@ -37,10 +39,17 @@ export default function PhoneNumberForm() {
     control,
     handleSubmit,
     formState: { errors, isSubmitting },
+    setValue,
   } = useForm<{ phoneNumber: string }>({
     resolver: zodResolver(phoneSchema),
     defaultValues: { phoneNumber: "" },
   });
+
+  useEffect(() => {
+    if (!loading && localUser?.phoneNumber) {
+      setValue("phoneNumber", localUser.phoneNumber);
+    }
+  }, [loading, localUser]);
 
   const onSubmit = async ({ phoneNumber }: { phoneNumber: string }) => {
     try {

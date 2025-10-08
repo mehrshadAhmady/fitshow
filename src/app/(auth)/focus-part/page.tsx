@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Button from "@/components/Button";
 
@@ -8,11 +8,19 @@ import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Checkbox from "@/components/CheckBox";
 import { useUserContext } from "@/context/userContext";
+import { useLocalUser } from "@/hooks/useLocalUser";
 
 const FocusPart = () => {
   const router = useRouter();
   const { updateUser } = useUserContext();
   const [bodyPart, setBodyPart] = useState<string[]>([]);
+  const { localUser, loading } = useLocalUser();
+
+  useEffect(() => {
+    if (!loading && localUser?.focusPart) {
+      setBodyPart(localUser.focusPart);
+    }
+  }, [loading, localUser]);
 
   const toggleBodyPart = (part: string) => {
     setBodyPart((prev) =>

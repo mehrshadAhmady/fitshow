@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Button from "@/components/Button";
 
@@ -14,6 +14,7 @@ import {
 import { HugeiconsIcon } from "@hugeicons/react";
 import Checkbox from "@/components/CheckBox";
 import { useUserContext } from "@/context/userContext";
+import { useLocalUser } from "@/hooks/useLocalUser";
 
 const GoalSelection = () => {
   const router = useRouter();
@@ -21,6 +22,13 @@ const GoalSelection = () => {
   const [goal, setGoal] = useState<
     "lose-weight" | "increase-strength" | "bulk" | "try-test"
   >("lose-weight");
+  const { localUser, loading } = useLocalUser();
+
+  useEffect(() => {
+    if (!loading && localUser?.workoutGoal) {
+      setGoal(localUser.workoutGoal);
+    }
+  }, [loading, localUser]);
 
   return (
     <div className="absolute z-0 flex flex-col items-center w-full h-screen">

@@ -7,11 +7,19 @@ import Button from "@/components/Button";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { useUserContext } from "@/context/userContext";
+import { useLocalUser } from "@/hooks/useLocalUser";
 
 const GoalSelection = () => {
   const router = useRouter();
   const { updateUser } = useUserContext();
   const [workoutDays, setWorkoutDays] = useState(1);
+  const { localUser, loading } = useLocalUser();
+
+  useEffect(() => {
+    if (!loading && localUser?.workoutDays) {
+      setWorkoutDays(localUser.workoutDays);
+    }
+  }, [loading, localUser]);
 
   return (
     <div className="absolute z-0 flex flex-col items-center w-full h-screen">

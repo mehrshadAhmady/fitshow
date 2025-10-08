@@ -1,18 +1,26 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "@/components/Button";
 
 import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import WeightPicker from "./_components/WeightPicker";
 import { useUserContext } from "@/context/userContext";
+import { useLocalUser } from "@/hooks/useLocalUser";
 
 const WeightSelection = () => {
   const router = useRouter();
   const { updateUser } = useUserContext();
-  const [weight, setWeight] = useState(70);
+  const [weight, setWeight] = useState(80);
+  const { localUser, loading } = useLocalUser();
+
+  useEffect(() => {
+    if (!loading && localUser?.weight) {
+      setWeight(localUser.weight);
+    }
+  }, [loading, localUser]);
 
   return (
     <div className="absolute z-0 flex flex-col items-center w-full h-screen">

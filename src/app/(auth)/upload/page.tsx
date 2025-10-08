@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Button from "@/components/Button";
 
@@ -8,12 +8,24 @@ import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Uploader from "@/components/Uploader";
 import { useUserContext } from "@/context/userContext";
+import { useLocalUser } from "@/hooks/useLocalUser";
 
 const Upload = () => {
   const router = useRouter();
   const { updateUser } = useUserContext();
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [fileId, setFileId] = useState<string | null>(null);
+  const { localUser, loading } = useLocalUser();
+
+  useEffect(() => {
+    if (!loading) {
+      if (localUser?.bodyImage) {
+        setUploadedImage(localUser.bodyImage);
+      } else {
+        setUploadedImage("");
+      }
+    }
+  }, [loading, localUser]);
 
   const handleUploadComplete = (imageUrl: string, fileId: string) => {
     setUploadedImage(imageUrl);
@@ -34,6 +46,7 @@ const Upload = () => {
         <Uploader
           onUploadComplete={handleUploadComplete}
           onImageChange={handleImageChange}
+          initialImage={uploadedImage}
         />
       </div>
       <Button
@@ -55,13 +68,9 @@ const Upload = () => {
           }
           router.push("/diet-options");
         }}
-        disabled={!uploadedImage || !fileId}
+        disabled={!uploadedImage}
       >
-        {!uploadedImage
-          ? "لطفاً ابتدا عکس را آپلود کنید"
-          : !fileId
-          ? "در حال آپلود..."
-          : "ادامه"}
+        {!uploadedImage ? "لطفاً ابتدا عکس را آپلود کنید" : "ادامه"}
       </Button>
     </div>
   );

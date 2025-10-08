@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Button from "@/components/Button";
 
@@ -14,6 +14,7 @@ import BikingImage from "@/assets/images/BikingImage.png";
 import SkatingImage from "@/assets/images/SkatingImage.png";
 import Image from "next/image";
 import { useUserContext } from "@/context/userContext";
+import { useLocalUser } from "@/hooks/useLocalUser";
 
 type Interests =
   | "running"
@@ -27,6 +28,13 @@ const InterestSport = () => {
   const router = useRouter();
   const { updateUser } = useUserContext();
   const [interest, setInterest] = useState<Interests>("running");
+  const { localUser, loading } = useLocalUser();
+
+  useEffect(() => {
+    if (!loading && localUser?.interestSport) {
+      setInterest(localUser.interestSport);
+    }
+  }, [loading, localUser]);
 
   return (
     <div className="absolute z-0 flex flex-col items-center w-full h-screen">
