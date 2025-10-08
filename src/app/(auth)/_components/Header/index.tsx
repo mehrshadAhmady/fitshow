@@ -49,8 +49,11 @@ const Header = () => {
       <div
         className="flex flex-col items-center justify-center ml-[5%] w-10 h-7 bg-[#F3F3F4] rounded-xl cursor-pointer hover:opacity-80"
         onClick={() => {
-          router.back();
-          console.log("first");
+          if (pathname === "/phone-number") {
+            router.push("/start-test");
+          } else {
+            router.push(`${pages[Number(pageNumber) - 2]}`);
+          }
         }}
       >
         <HugeiconsIcon icon={ArrowLeft02Icon} width={21} height={21} />
