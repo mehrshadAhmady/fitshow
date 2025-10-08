@@ -2,6 +2,7 @@
 import { usePathname } from "next/navigation";
 import Header from "./_components/Header";
 import { UserProvider } from "@/context/userContext";
+import ProtectedRoute from "./_components/ProtectedRoute";
 
 export default function AuthLayout({
   children,
@@ -14,7 +15,9 @@ export default function AuthLayout({
   return (
     <div className="relative flex flex-col items-center min-h-screen">
       {!isResultPage && <Header />}
-      <UserProvider>{children}</UserProvider>
+      <UserProvider>
+        <ProtectedRoute>{children}</ProtectedRoute>
+      </UserProvider>
     </div>
   );
 }
