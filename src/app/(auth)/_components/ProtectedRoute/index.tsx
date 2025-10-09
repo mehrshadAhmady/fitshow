@@ -18,6 +18,10 @@ export default function ProtectedRoute({
     const savedUser = localStorage.getItem("user_data");
     const parsed = savedUser ? JSON.parse(savedUser) : null;
 
+    if (pathname === "/phone-number") {
+      return;
+    }
+
     // Rule 1: OTP page protection
     if (pathname === "/otp-code" && parsed.phoneNumber === "") {
       router.replace("/phone-number");

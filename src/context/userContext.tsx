@@ -11,29 +11,29 @@ import {
 } from "react";
 
 export type User = {
-  phoneNumber?: string;
-  verified?: boolean;
-  gender?: "male" | "female";
-  workoutGoal?: "lose-weight" | "increase-strength" | "bulk" | "try-test";
-  workoutDays?: number;
-  workoutPlace?: "home" | "gym";
-  healthCondition?: "healthy" | string[];
-  focusPart?: string[];
-  height?: number;
-  weight?: number;
-  idealWeight?: number;
-  birthDate?: string;
-  bodyForm?: "thin" | "obese";
-  bodyImage?: string;
-  dietPlan?: boolean;
-  interestSport?:
+  phoneNumber: string;
+  verified: boolean;
+  gender: "male" | "female";
+  workoutGoal: "lose-weight" | "increase-strength" | "bulk" | "try-test";
+  workoutDays: number;
+  workoutPlace: "home" | "gym";
+  healthCondition: "healthy" | string[];
+  focusPart: string[];
+  height: number;
+  weight: number;
+  idealWeight: number;
+  birthDate: string;
+  bodyForm: "thin" | "obese";
+  bodyImage: string;
+  dietPlan: boolean;
+  interestSport:
     | "running"
     | "trx"
     | "hiking"
     | "skating"
     | "biking"
     | "body-builing";
-  userPlan?: "1-month" | "6-months" | "12-months";
+  userPlan: "1-month" | "6-months" | "12-months";
 };
 
 const STORAGE_KEY = "user_data";

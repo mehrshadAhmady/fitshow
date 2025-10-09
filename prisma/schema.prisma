@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/@prisma/client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Gender {
+  male
+  female
+}
+
+enum WorkoutPlace {
+  home
+  gym
+}
+
+enum BodyForm {
+  thin
+  obese
+}
+
+model User {
+  id              Int           @id @default(autoincrement())
+  phoneNumber     String        @unique
+  verified        Boolean       @default(false)
+  gender          Gender
+  workoutGoal     String
+  workoutDays     Int
+  workoutPlace    WorkoutPlace
+  healthCondition Json // can be string or array of strings
+  focusPart       Json // array of focus parts
+  height          Int
+  weight          Int
+  idealWeight     Int
+  birthDate       String
+  bodyForm        BodyForm
+  bodyImage       String?
+  dietPlan        Boolean       @default(false)
+  interestSport   String
+  userPlan        String
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+}
