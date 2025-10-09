@@ -24,20 +24,23 @@ const WeightPicker = ({
   );
   const intValues = Array.from({ length: max - min + 1 }, (_, i) => min + i);
 
-  // Scroll to selected value on mount
   useEffect(() => {
-    if (containerRef.current) {
-      const index = numbers.indexOf(value);
-      const element = containerRef.current.children[index] as HTMLElement;
-      containerRef.current.scrollTo({
-        left:
-          element.offsetLeft -
-          containerRef.current.clientWidth / 2 +
-          element.clientWidth / 2,
-        behavior: "instant",
-      });
-    }
-  }, []);
+    if (!containerRef.current) return;
+
+    const index = numbers.findIndex(
+      (n) => Math.abs(n - value) < 0.05 // tolerance for float imprecision
+    );
+    if (index === -1) return;
+
+    const element = containerRef.current.children[index] as HTMLElement;
+    containerRef.current.scrollTo({
+      left:
+        element.offsetLeft -
+        containerRef.current.clientWidth / 2 +
+        element.clientWidth / 2,
+      behavior: "instant",
+    });
+  }, [value]); // ✅ rerun when `value` changes
 
   // Detect nearest tick continuously (live update)
   let scrollTimeout: NodeJS.Timeout;

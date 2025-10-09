@@ -1,21 +1,17 @@
 import type { NextConfig } from "next";
-import type { Configuration } from "webpack";
 
 const nextConfig: NextConfig = {
-  webpack(config: Configuration) {
-    config.module?.rules?.push({
-      test: /\.svg$/,
-      use: [
-        {
-          loader: "@svgr/webpack",
-          options: {
-            icon: true,
-          },
-        },
-      ],
-    });
+  reactStrictMode: true,
+  turbopack: {
+    rules: {
+      "*.svg": {
+        loaders: ["@svgr/webpack"],
+      },
+    },
+  },
 
-    return config;
+  images: {
+    formats: ["image/avif", "image/webp"],
   },
 };
 

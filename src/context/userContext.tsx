@@ -46,7 +46,7 @@ const initialUserData: User = {
   workoutDays: 1,
   workoutPlace: "home",
   healthCondition: "healthy",
-  focusPart: [""],
+  focusPart: [],
   height: 172,
   weight: 70,
   idealWeight: 70,

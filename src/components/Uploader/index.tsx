@@ -5,6 +5,7 @@ import Button from "../Button";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Upload01Icon } from "@hugeicons/core-free-icons";
 import { cn } from "@/lib/utils";
+import { useUserContext } from "@/context/userContext";
 
 interface UploaderProps {
   onUploadComplete?: (imageUrl: string, fileId: string) => void;
@@ -136,6 +137,8 @@ export default function Uploader({
 
   // Uploaded image preview
   if (uploadedImage && !showUploadModal) {
+    const { updateUser } = useUserContext();
+
     return (
       <div className="relative flex flex-col items-center w-full h-[11.75rem] gap-4 rounded-[2.5rem] bg-white/25 text-white overflow-hidden shadow-[0_0_0_4px_#11121440]">
         <img
@@ -152,6 +155,7 @@ export default function Uploader({
             <Button
               className="w-32 h-8 rounded-2xl peyda-light text-sm"
               onClick={() => {
+                updateUser({ bodyImage: "" });
                 onImageChange?.();
                 removeImage();
               }}

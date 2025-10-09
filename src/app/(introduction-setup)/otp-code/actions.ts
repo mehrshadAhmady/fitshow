@@ -2,6 +2,8 @@
 
 import axios from "axios";
 import { client } from "@/lib/redis-db";
+import { prisma } from "@/lib/prisma";
+import { redirect } from "next/navigation";
 
 const TEMPLATE_ID = "607123";
 const API_KEY = "E1Jqu0syJ1xwL2z0X2vklJdiwXR5WgIPZTRypEem0ih0JJAv";
@@ -39,9 +41,18 @@ export async function resendOtp(phoneNumber: string) {
 
 export async function verifyOtp(otpCode: string, phoneNumber: string) {
   const savedOtp = await client.get(phoneNumber);
-  if (otpCode === savedOtp) {
-    return otpCode;
-  } else {
+  if (!savedOtp) {
+    throw new Error("کد منقضی شده است. لطفاً مجدداً تلاش کنید.");
+  }
+  if (otpCode !== savedOtp) {
     throw new Error("کد تأیید اشتباه است.");
   }
+  const existingUser = await prisma.user.findUnique({
+    where: { phoneNumber },
+  });
+  if (existingUser) {
+    console.log("Existing user found:", existingUser.phoneNumber);
+    redirect("/");
+  }
+  return { message: "User verified successfuly!" };
 }
