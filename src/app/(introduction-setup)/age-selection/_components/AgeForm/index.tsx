@@ -5,6 +5,7 @@ import { Controller, useForm, useWatch } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import jalaali from "jalaali-js";
 
 import TextInput from "@/components/TextInput";
 import Form from "@/components/Form";
@@ -68,14 +69,25 @@ export default function BirthdayForm() {
     },
   });
 
+  // Turn UTC date to Jalaali and set default value:
   useEffect(() => {
-    if (!loading && localUser?.birthDate) {
-      const [year, month, day] = localUser.birthDate.split("-");
-      setValue("day", day || "");
-      setValue("month", month || "");
-      setValue("year", year || "");
+  if (!loading && localUser?.birthDate) {
+    try {
+      const date = new Date(localUser.birthDate);
+      const gy = date.getUTCFullYear();
+      const gm = date.getUTCMonth() + 1; // JS months are 0-based
+      const gd = date.getUTCDate();
+
+      const { jy, jm, jd } = jalaali.toJalaali(gy, gm, gd);
+
+      setValue("day", String(jd).padStart(2, "0"));
+      setValue("month", String(jm).padStart(2, "0"));
+      setValue("year", String(jy));
+    } catch (err) {
+      console.error("Failed to parse Jalali date:", err);
     }
-  }, [loading, localUser, setValue]);
+  }
+}, [loading, localUser, setValue]);
 
   const dayValue = useWatch({ control, name: "day" });
   const monthValue = useWatch({ control, name: "month" });
@@ -97,13 +109,11 @@ export default function BirthdayForm() {
   };
 
   const onSubmit = async (data: BirthdayFormData) => {
-    const formatted = {
-      day: String(data.day).padStart(2, "0"),
-      month: String(data.month).padStart(2, "0"),
-      year: String(data.year).padStart(4, "0"),
-    };
-    await updateUser({
-      birthDate: `${formatted.year}-${formatted.month}-${formatted.day}`,
+    const jalali = { year: data.year, month: data.month, day: data.day };
+    const { gy, gm, gd } = jalaali.toGregorian(jalali.year, jalali.month, jalali.day);
+    const utcDate = new Date(Date.UTC(gy, gm - 1, gd)).toISOString();
+    updateUser({
+      birthDate: utcDate,
     });
     router.push("/body-form");
   };
