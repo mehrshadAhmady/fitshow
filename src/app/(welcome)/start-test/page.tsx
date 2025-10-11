@@ -16,8 +16,8 @@ const StartTest = () => {
         height={243}
         className="mt-20"
       />
-      <h1 className="mt-4 peyda-bold text-xl">نوشته آزمایشی توضیحات تست</h1>
-      <p className="mt-4 w-[21.5rem] peyda-medium text-xs text-center">
+      <h1 className="mt-4 peyda-bold text-xl sm:text-2xl lg:text-3xl">نوشته آزمایشی توضیحات تست</h1>
+      <p className="mt-4 w-[21.5rem] peyda-medium text-xs text-center sm:text-sm lg:text-base">
         نوشته آزمایشی توضیحات تست نوشته آزمایشی توضیحات تستنوشته آزمایشی توضیحات
         تست نوشته آزمایشی توضیحات تست
       </p>

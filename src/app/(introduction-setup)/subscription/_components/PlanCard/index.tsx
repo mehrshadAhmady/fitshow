@@ -41,7 +41,7 @@ const PlanCard = ({ plan, isActive }: PlanCardProps) => {
     >
       <div
         className={cn(
-          "rounded-[2rem] flex flex-col justify-center items-center text-center w-[19rem] h-[22rem] transition-all duration-500 ease-in-out",
+          "rounded-[2rem] flex flex-col justify-center items-center text-center w-[19rem] lg:w-[32rem] h-[22rem] lg:h-[30rem] transition-all duration-500 ease-in-out",
           plan.highlighted
             ? "bg-[#FF7E25CF] text-white shadow-[0_0_0_4px_#F9731640]"
             : "bg-[#F3F3F4] text-black",

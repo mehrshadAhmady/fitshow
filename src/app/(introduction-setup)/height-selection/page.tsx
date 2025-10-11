@@ -43,7 +43,7 @@ const HeightSelection = () => {
 
   return (
     <div className="absolute z-0 flex flex-col items-center w-full h-screen">
-      <h3 className="mt-24 mb-10 w-80 peyda-bold text-base text-center">
+      <h3 className="mt-24 mb-10 w-80 peyda-bold text-base text-center lg:mb-20">
         قد شما چقدر است؟
       </h3>
 

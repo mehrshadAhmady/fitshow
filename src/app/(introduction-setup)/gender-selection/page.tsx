@@ -41,7 +41,7 @@ const GenderSelection = () => {
         <Image
           src={MaleSelectionImage}
           alt="male-selection-image"
-          className="absolute z-0 h-full"
+          className="absolute z-0 right-0 h-full"
         />
         <div className="absolute w-full h-full flex flex-col items-end justify-between">
           <div className="flex items-center justify-center gap-2 ml-4 mt-4">
@@ -67,7 +67,7 @@ const GenderSelection = () => {
         <Image
           src={FemaleSelectionImage}
           alt="female-selection-image"
-          className="absolute z-0 h-full"
+          className="absolute z-0 h-full right-0"
         />
         <div className="absolute w-full h-full flex flex-col items-end justify-between">
           <div className="flex items-center justify-center gap-2 ml-4 mt-4">

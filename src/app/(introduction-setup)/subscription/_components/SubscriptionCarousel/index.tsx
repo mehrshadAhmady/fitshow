@@ -94,11 +94,11 @@ export default function SubscriptionCarousel() {
       // ✅ React-slick sometimes reports fractional positions;
       // round to the nearest integer for stability
       setActiveIndex(Math.round(index));
-    },
+    }
   };
 
   return (
-    <div className="relative flex justify-center w-full select-none overflow-hidden">
+    <div className="relative flex justify-center w-full max-w-[34rem] select-none overflow-hidden">
       {/* Arrows */}
       <ArrowButton
         direction="left"
@@ -112,7 +112,7 @@ export default function SubscriptionCarousel() {
       />
 
       {/* Slider */}
-      <div className="w-full max-w-[400px] overflow-hidden">
+      <div className="w-full max-w-[34rem] overflow-hidden">
         <Slider ref={sliderRef} {...settings}>
           {plans.map((plan, index) => (
             <PlanCard

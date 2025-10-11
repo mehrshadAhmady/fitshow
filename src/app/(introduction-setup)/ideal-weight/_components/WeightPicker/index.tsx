@@ -184,11 +184,9 @@ const WeightPicker = ({
         style={{
           scrollbarWidth: "none",
           msOverflowStyle: "none",
-          paddingLeft: "170px",
-          paddingRight: "170px",
           touchAction: "pan-x", // allow horizontal panning; prevents vertical blocking
         }}
-        className="overflow-x-scroll w-full flex items-center justify-start no-scrollbar snap-x snap-mandatory py-8 px-8"
+        className="overflow-x-scroll w-full lg:w-[50%] flex items-center justify-start no-scrollbar snap-x snap-mandatory py-8 px-[170px] lg:px-[50%]"
       >
         {numbers.map((number, i) => {
           const isMajor = Number.isInteger(number);

@@ -113,89 +113,98 @@ export default function BirthdayForm() {
       onSubmit={handleSubmit(onSubmit)}
       className="absolute bottom-0 top-44 mb-10 flex flex-col justify-center items-center w-full"
     >
-      <div className="flex flex-row justify-evenly items-center gap-2 px-4 bg-[#F3F3F4] w-60 h-20 rounded-[1.75rem]">
-        {/* Day */}
-        <div className="w-16 h-16">
-          <Controller
-            name="day"
-            control={control}
-            render={({ field }) => (
-              <TextInput
-                {...field}
-                ref={dayRef}
-                type="number"
-                placeholder="DD"
-                inputSize="large"
-                className="text-center worksans-bold text-[1.25rem] rounded-[1.25rem] p-0 focus:shadow-[0_0_0_4px_#F9731640] not-focus:bg-transparent not-focus:text-[#BABBBE]"
-                style={{ direction: "ltr" }}
-                disabled={isSubmitting}
-                onChange={(e) => {
-                  let val = e.target.value.replace(/\D/g, "").slice(0, 2);
-                  const month = parseInt(monthValue || "0", 10);
-                  // prevent entering 31 for months ≥ 7
-                  if (month >= 7 && month <= 12 && val === "31") val = "30";
-                  field.onChange(val);
-                }}
-                onBlur={(e) => setValue("day", padTwoDigits(e.target.value))}
-              />
-            )}
-          />
+      <div className="flex flex-col items-center gap-2">
+        <div className="flex flex-row justify-evenly items-center gap-2 px-4 bg-[#F3F3F4] w-60 h-20 rounded-[1.75rem]">
+          {/* Day */}
+          <div className="w-16 h-16">
+            <Controller
+              name="day"
+              control={control}
+              render={({ field }) => (
+                <TextInput
+                  {...field}
+                  ref={dayRef}
+                  type="number"
+                  placeholder="DD"
+                  inputSize="large"
+                  className="text-center worksans-bold text-[1.25rem] rounded-[1.25rem] p-0 focus:shadow-[0_0_0_4px_#F9731640] not-focus:bg-transparent not-focus:text-[#BABBBE]"
+                  style={{ direction: "ltr" }}
+                  disabled={isSubmitting}
+                  onChange={(e) => {
+                    let val = e.target.value.replace(/\D/g, "").slice(0, 2);
+                    const month = parseInt(monthValue || "0", 10);
+                    // prevent entering 31 for months ≥ 7
+                    if (month >= 7 && month <= 12 && val === "31") val = "30";
+                    field.onChange(val);
+                  }}
+                  onBlur={(e) => setValue("day", padTwoDigits(e.target.value))}
+                />
+              )}
+            />
+          </div>
+
+          {/* Month */}
+          <div className="w-16 h-16">
+            <Controller
+              name="month"
+              control={control}
+              render={({ field }) => (
+                <TextInput
+                  {...field}
+                  type="number"
+                  placeholder="MM"
+                  inputSize="large"
+                  className="text-center worksans-bold text-[1.25rem] rounded-[1.25rem] p-0 focus:shadow-[0_0_0_4px_#F9731640] not-focus:bg-transparent not-focus:text-[#BABBBE]"
+                  style={{ direction: "ltr" }}
+                  disabled={isSubmitting}
+                  onChange={(e) => {
+                    const val = e.target.value.replace(/\D/g, "").slice(0, 2);
+                    field.onChange(val);
+                  }}
+                  onBlur={(e) =>
+                    setValue("month", padTwoDigits(e.target.value))
+                  }
+                />
+              )}
+            />
+          </div>
+
+          {/* Year */}
+          <div className="w-16 h-16">
+            <Controller
+              name="year"
+              control={control}
+              render={({ field }) => (
+                <TextInput
+                  {...field}
+                  type="number"
+                  placeholder="YYYY"
+                  inputSize="large"
+                  className="text-center worksans-bold text-[1.25rem] rounded-[1.25rem] p-0 focus:shadow-[0_0_0_4px_#F9731640] not-focus:bg-transparent not-focus:text-[#BABBBE]"
+                  style={{ direction: "ltr" }}
+                  disabled={isSubmitting}
+                  onChange={(e) =>
+                    field.onChange(
+                      e.target.value.replace(/\D/g, "").slice(0, 4)
+                    )
+                  }
+                />
+              )}
+            />
+          </div>
         </div>
 
-        {/* Month */}
-        <div className="w-16 h-16">
-          <Controller
-            name="month"
-            control={control}
-            render={({ field }) => (
-              <TextInput
-                {...field}
-                type="number"
-                placeholder="MM"
-                inputSize="large"
-                className="text-center worksans-bold text-[1.25rem] rounded-[1.25rem] p-0 focus:shadow-[0_0_0_4px_#F9731640] not-focus:bg-transparent not-focus:text-[#BABBBE]"
-                style={{ direction: "ltr" }}
-                disabled={isSubmitting}
-                onChange={(e) => {
-                  const val = e.target.value.replace(/\D/g, "").slice(0, 2);
-                  field.onChange(val);
-                }}
-                onBlur={(e) => setValue("month", padTwoDigits(e.target.value))}
-              />
-            )}
-          />
-        </div>
-
-        {/* Year */}
-        <div className="w-16 h-16">
-          <Controller
-            name="year"
-            control={control}
-            render={({ field }) => (
-              <TextInput
-                {...field}
-                type="number"
-                placeholder="YYYY"
-                inputSize="large"
-                className="text-center worksans-bold text-[1.25rem] rounded-[1.25rem] p-0 focus:shadow-[0_0_0_4px_#F9731640] not-focus:bg-transparent not-focus:text-[#BABBBE]"
-                style={{ direction: "ltr" }}
-                disabled={isSubmitting}
-                onChange={(e) =>
-                  field.onChange(e.target.value.replace(/\D/g, "").slice(0, 4))
-                }
-              />
-            )}
-          />
-        </div>
+        {/* Error display */}
+        {Object.values(errors).some((e) => e?.message) && (
+          <p className="text-red-500 peyda-light text-xs ml-auto mr-2 mt-2 text-center">
+            ***{" "}
+            {errors.day?.message ||
+              errors.month?.message ||
+              errors.year?.message}{" "}
+            ***
+          </p>
+        )}
       </div>
-
-      {/* Error display */}
-      {Object.values(errors).some((e) => e?.message) && (
-        <p className="text-red-500 peyda-light text-xs ml-auto mr-20 mt-2 text-center">
-          ***{" "}
-          {errors.day?.message || errors.month?.message || errors.year?.message}
-        </p>
-      )}
 
       {/* Submit */}
       <Button

@@ -26,8 +26,8 @@ const GoalSelection = () => {
       <h3 className="mt-24 w-80 peyda-bold text-base text-center">
         چند روز از هفته را به ورزش اختصاص می‌دهید؟
       </h3>
-      <h1 className="mt-20 text-[4rem] worksans-extrabold">{workoutDays}</h1>
-      <div className="flex justify-evenly items-center mt-auto mb-4 w-[90%] h-18 rounded-[1.875rem] bg-[#F3F3F4]">
+      <h1 className="mt-20 text-[4rem] worksans-extrabold lg:text-[10rem]">{workoutDays}</h1>
+      <div className="flex justify-evenly items-center mt-auto mb-4 w-[90%] max-w-[21.125rem] h-18 rounded-[1.875rem] bg-[#F3F3F4]">
         <div
           onClick={() => {
             setWorkoutDays(1);

@@ -32,7 +32,7 @@ const FocusPart = () => {
 
   return (
     <div className="absolute z-0 flex flex-col items-center w-full h-screen">
-      <h3 className="mt-24 w-80 peyda-bold text-base text-center">
+      <h3 className="mt-24 w-[90%] peyda-bold text-base text-center">
         روی کدوم قسمت بدنت می‌خوای تمرکز بیشتری داشته باشی؟
       </h3>
       <Checkbox

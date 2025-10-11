@@ -80,7 +80,6 @@ export default function PhoneNumberForm() {
                 type="text"
                 placeholder="+98 912 XXXXX 52"
                 inputSize="large"
-                error={errors.phoneNumber?.message}
                 className="peyda-bold text-base rounded-[1.25rem] px-12"
                 disabled={isSubmitting}
                 style={{ direction: "ltr" }}
@@ -89,6 +88,7 @@ export default function PhoneNumberForm() {
             )}
           />
         </div>
+        {errors.phoneNumber && <p className="text-left text-sm peyda-regular text-red-400">*** {errors.phoneNumber?.message} ***</p>}
         <Button
           type="submit"
           iconPrefix={

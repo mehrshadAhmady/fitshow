@@ -34,6 +34,7 @@ const PlaceSelection = () => {
         alt="place-selection-image"
         width={193}
         height={193}
+        className="my-4 lg:w-[250px] lg:h-[250px]"
       />
       <Checkbox
         label="تمرین در منزل"

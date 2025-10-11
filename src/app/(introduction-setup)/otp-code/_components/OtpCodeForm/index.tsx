@@ -69,7 +69,7 @@ export default function OtpCodeForm() {
         className="relative flex flex-col h-full w-[90%]"
         style={{ direction: "ltr" }}
       >
-        <div className="w-[90%] mx-auto">
+        <div className="w-[90%] max-w-[19rem] mx-auto">
           <Controller
             name="otpCode"
             control={control}
@@ -101,12 +101,12 @@ export default function OtpCodeForm() {
               />
             )}
           />
+          {errors.otpCode && (
+            <p className="text-red-500 text-xs peyda-regular -mt-6 ml-2">
+              {errors.otpCode.message}
+            </p>
+          )}
         </div>
-        {errors.otpCode && (
-          <p className="text-red-500 text-xs peyda-regular -mt-6 ml-2">
-            {errors.otpCode.message}
-          </p>
-        )}
         <Button
           type="button"
           color="primary"

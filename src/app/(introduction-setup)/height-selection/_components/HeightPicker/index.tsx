@@ -52,7 +52,7 @@ const HeightPicker = ({ data, setData }: Props) => {
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center w-54 h-90 cursor-pointer">
+    <div className="relative flex flex-col items-center justify-center w-54 h-90 cursor-pointer lg:h-120">
       {/* Fade gradients */}
       <div className="pointer-events-none absolute top-0 h-20 w-full bg-gradient-to-b from-white to-transparent z-10" />
       <div className="pointer-events-none absolute bottom-0 h-20 w-full bg-gradient-to-t from-white to-transparent z-10" />
