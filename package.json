@@ -21,6 +21,7 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-hook-form": "^7.64.0",
+    "react-indiana-drag-scroll": "^2.2.1",
     "react-otp-input": "^3.1.1",
     "react-slick": "^0.31.0",
     "redis": "^5.8.3",
